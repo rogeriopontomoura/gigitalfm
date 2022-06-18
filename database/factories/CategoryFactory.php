@@ -16,9 +16,8 @@ class CategoryFactory extends Factory
         return [
             'title' => $this->faker->name,
             'description' => $this->faker->sentence(),
-            'type_id' => $this->faker->randomDigit(2,10),
-            'is_active' => 1,
-            'color' => $this->faker->hexColor(),
+            'category_type_id' => $this->faker->randomDigit(2,10),
+            'is_active' => true,
         ];
     }
 }
