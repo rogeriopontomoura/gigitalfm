@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Categories;
 
 use App\Models\Category;
 use Livewire\Component;
+use WireUi\Traits\Actions;
 
 class CategoryCreate extends Component
 {
@@ -11,6 +12,8 @@ class CategoryCreate extends Component
     public $newCategory;
 
     public $editing;
+
+    use Actions;
 
     protected $listeners = ['editItem' => 'editing'];
 
@@ -30,6 +33,12 @@ class CategoryCreate extends Component
 
         $this->emit('created');
         $this->emitTo('categories.category-list', 'refreshList');
+        $this->editing = false;
+
+        $this->notification()->success(
+            $title = 'Category saved',
+            $description = 'Your Category was successfull saved'
+        );
     }
 
     protected function rules()
@@ -53,8 +62,18 @@ class CategoryCreate extends Component
 
     public function editing(Category $Category)
     {
+        $this->resetValidation();
         $this->editing = true;
         $this->newCategory = $Category;
+
+    }
+
+    public function editCancel()
+    {
+
+        $this->newCategory = new Category();
+        $this->resetValidation();
+        $this->editing = false;
 
     }
 }

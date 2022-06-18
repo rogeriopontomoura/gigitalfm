@@ -55,12 +55,18 @@
             {{__('Category Created.')}}
         </x-jet-action-message>
 
-        <x-jet-button>
-            @if ($editing)
+        @if ($editing)
+            <x-jet-button class="mr-3" >
                     {{ __('Save') }}
-            @else
-                {{ __('Create') }}
-            @endif
+            </x-jet-button>
+            <x-jet-secondary-button wire:click="editCancel" class="mr-3" >
+                {{ __('Cancel') }}
         </x-jet-button>
+        @else
+            <x-jet-button>
+                {{ __('Create') }}
+            </x-jet-button>
+        @endif
+
     </x-slot>
 </x-jet-form-section>

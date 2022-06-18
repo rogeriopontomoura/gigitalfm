@@ -31,4 +31,19 @@ class CategoryListTest extends TestCase
             ->assertPayloadSet('page', 2);
 
     }
+
+    public function canDestroyCategory()
+    {
+        $this->actingAs($user = User::factory()->withPersonalTeam()->create());
+
+        $category = Category::factory()->create();
+
+        Livewire::test(CategoryList::class)
+            ->call('delete', $category)
+            ->call('destroy')
+            ->assertEmitted('refreshList');
+
+        $this->assertDatabaseMissing('categories', $category->toArray());
+
+    }
 }

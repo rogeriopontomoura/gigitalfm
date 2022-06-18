@@ -5,14 +5,16 @@ namespace App\Http\Livewire\Categories;
 use App\Models\Category;
 use Livewire\Component;
 use Livewire\WithPagination;
+use WireUi\Traits\Actions;
 
 class CategoryList extends Component
 {
 
+    use Actions;
+
     use WithPagination;
 
     protected $listeners = ['refreshList' => '$refresh'];
-
 
     public function edit(Category $category)
     {
@@ -20,7 +22,41 @@ class CategoryList extends Component
 
         $this->emitTo('categories.category-create', 'editItem', $category);
 
-        //dd($newCategory->title);
+    }
+
+    public function delete(Category $category)
+    {
+        $this->newCategory = $category;
+
+        $this->notification()->confirm([
+            'title'       => 'Are you Sure?',
+            'description' => "Do you hant do delete $category->title ?",
+            'icon'        => 'question',
+            'accept'      => [
+                'label'  => 'Yes, delete it',
+                'method' => 'destroy',
+                'params' => $category,
+            ],
+            'reject' => [
+                'label'  => 'No, cancel',
+            ],
+        ]);
+
+    }
+
+    public function destroy(Category $category)
+    {
+        $this->newCategory = $category;
+
+        $this->newCategory->delete();
+
+        $this->notification()->success(
+            $title = 'Category Deleted',
+            $description = 'Your category was successfull deleted'
+        );
+
+        $this->emit('refreshList');
+
     }
 
 

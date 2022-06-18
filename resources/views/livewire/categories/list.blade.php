@@ -29,8 +29,8 @@
                             <td>{{ $item->is_active }}</td>
                             <td>
                                 <div class="inline-flex rounded-md shadow-sm" role="group">
-                                    <x-button primary icon="pencil" wire:click="edit({{$item}})"/>
-                                    <x-button negative icon="x" wire:click="confirmDelete({{ $item }})"/>
+                                    <x-button primary icon="pencil" wire:click="edit({{$item}})" wire:loading.attr="disabled"/>
+                                    <x-button negative icon="x" wire:click="delete({{ $item }})" wire:loading.attr="disabled"/>
                                 </div>
                             </td>
                         </tr>
@@ -42,6 +42,8 @@
                 {{ $this->list->links() }}
 
             </div>
+
         </x-slot>
     </x-jet-action-section>
+
 </div>

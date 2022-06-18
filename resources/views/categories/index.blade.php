@@ -3,6 +3,9 @@
         <h2 class="text-xl font-semibold leading-tight text-gray-800">
             {{ __('Create Categories') }}
         </h2>
+        <div>
+            <x-notifications/>
+        </div>
     </x-slot>
 
     <div>
