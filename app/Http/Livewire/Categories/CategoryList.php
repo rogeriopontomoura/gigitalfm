@@ -11,7 +11,18 @@ class CategoryList extends Component
 
     use WithPagination;
 
-    protected $listeners = ['refreshList' => '$refreshrefresh'];
+    protected $listeners = ['refreshList' => '$refresh'];
+
+
+    public function edit(Category $category)
+    {
+        $this->newCategory = $category;
+
+        $this->emitTo('categories.category-create', 'editItem', $category);
+
+        //dd($newCategory->title);
+    }
+
 
     public function getListProperty()
     {

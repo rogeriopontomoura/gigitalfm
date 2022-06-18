@@ -56,7 +56,11 @@
         </x-jet-action-message>
 
         <x-jet-button>
-            {{ __('Create') }}
+            @if ($editing)
+                    {{ __('Save') }}
+            @else
+                {{ __('Create') }}
+            @endif
         </x-jet-button>
     </x-slot>
 </x-jet-form-section>

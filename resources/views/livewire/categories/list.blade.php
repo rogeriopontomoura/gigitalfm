@@ -28,7 +28,10 @@
                             <td>{{ $item->category_type_id }}</td>
                             <td>{{ $item->is_active }}</td>
                             <td>
-                                @livewire('categories.category-item', ['category' => $item], key($item->id))
+                                <div class="inline-flex rounded-md shadow-sm" role="group">
+                                    <x-button primary icon="pencil" wire:click="edit({{$item}})"/>
+                                    <x-button negative icon="x" wire:click="confirmDelete({{ $item }})"/>
+                                </div>
                             </td>
                         </tr>
 

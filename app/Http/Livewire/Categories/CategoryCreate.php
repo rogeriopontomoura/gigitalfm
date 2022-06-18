@@ -10,6 +10,10 @@ class CategoryCreate extends Component
 
     public $newCategory;
 
+    public $editing;
+
+    protected $listeners = ['editItem' => 'editing'];
+
     public function mount(Category $category)
     {
         $this->newCategory = $category;
@@ -18,7 +22,6 @@ class CategoryCreate extends Component
 
     public function store()
     {
-
         $this->validate();
 
         $this->newCategory->save();
@@ -45,5 +48,13 @@ class CategoryCreate extends Component
         $this->newCategory->color = '#FFF';
 
         return view('livewire.categories.create');
+    }
+
+
+    public function editing(Category $Category)
+    {
+        $this->editing = true;
+        $this->newCategory = $Category;
+
     }
 }
