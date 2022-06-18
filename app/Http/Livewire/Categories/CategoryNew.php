@@ -8,7 +8,7 @@ use Livewire\Component;
 class CategoryNew extends Component
 {
 
-    public Category $newCategory;
+    public $newCategory;
 
     public function mount(Category $category)
     {
@@ -18,6 +18,7 @@ class CategoryNew extends Component
 
     public function store()
     {
+
         $this->validate();
 
         $this->newCategory->save();
@@ -33,11 +34,13 @@ class CategoryNew extends Component
             'newCategory.title' => 'required',
             'newCategory.type_id' => 'required',
             'newCategory.color' => 'required',
+            'newCategory.is_active' => 'required',
+            'newCategory.description' => 'required',
         ];
     }
 
     public function render()
     {
-        return view('livewire.categories.new');
+        return view('categories.new');
     }
 }
