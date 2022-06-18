@@ -54,7 +54,6 @@ class CategoryCreate extends Component
     public function render()
     {
         $this->newCategory->is_active = true;
-        $this->newCategory->color = '#FFF';
 
         return view('livewire.categories.create');
     }
