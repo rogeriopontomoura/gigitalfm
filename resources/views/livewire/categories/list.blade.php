@@ -26,7 +26,8 @@
                             <td>{{ $item->title }}</td>
                             <td>{{ $item->description }}</td>
                             <td>{{ $item->category_type_id }}</td>
-                            <td>{{ $item->is_active }}</td>
+                            <td>
+                                {{ ($item->is_active === 1) ? __('Yes') : __('No') }}
                             <td>
                                 <div class="inline-flex rounded-md shadow-sm" role="group">
                                     <x-button primary icon="pencil" wire:click="edit({{$item}})" wire:loading.attr="disabled"/>
