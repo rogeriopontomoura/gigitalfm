@@ -26,6 +26,7 @@ class CategoryCreate extends Component
         $this->newCategory = new Category();
 
         $this->emit('created');
+        $this->emitTo('categories.category-list', 'refreshList');
     }
 
     protected function rules()

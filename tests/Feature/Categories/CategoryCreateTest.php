@@ -30,7 +30,8 @@ class CategoryCreateTest extends TestCase
 
         Livewire::test(CategoryCreate::class, ['category'=>$categoryFake])
         ->call('store')
-        ->assertEmitted('created');
+        ->assertEmitted('created')
+        ->assertEmitted('refreshList');
 
         $this->assertDatabaseHas('categories', [
             'title' => $categoryFake->title,

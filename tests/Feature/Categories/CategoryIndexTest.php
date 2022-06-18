@@ -2,17 +2,14 @@
 
 namespace Tests\Feature\Categories;
 
-use Livewire\Livewire;
-use App\Models\Category;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
-use App\Http\Livewire\Categories\CategoryNew;
 
 
 /**
  * @group categories
- * @group indexCategory
+ * @group CategoryIndex
  */
 
 class CategoryIndexTest extends TestCase
@@ -26,7 +23,8 @@ class CategoryIndexTest extends TestCase
     {
         $this->actingAs($user = User::factory()->withPersonalTeam()->create())
             ->get(route('categories.index'))
-            ->assertSeeLivewire('categories.category-create');
+            ->assertSeeLivewire('categories.category-create')
+            ->assertSeeLivewire('categories.category-list');
 
     }
 }

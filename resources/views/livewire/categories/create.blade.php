@@ -35,7 +35,7 @@
                 placeholder="Select one Category"
                 :options="[
                     ['name' => 'Income',  'id' => 1],
-                    ['name' => 'Expense',  'id' => 1],
+                    ['name' => 'Expense',  'id' => 2],
                     ]"
                     option-label="name"
                     option-value="id"
