@@ -17,8 +17,8 @@ class CreateCategoriesTable extends Migration
             $table->id();
             $table->string('title')->unique();
             $table->text('description')->nullable();
-            $table->integer('type_id');
-            $table->integer('is_active')->default(1);
+            $table->integer('category_type_id');
+            $table->boolean('is_active')->default(true);
             $table->string('color')->nullable();
             $table->timestamps();
         });
