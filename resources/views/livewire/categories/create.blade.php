@@ -45,17 +45,6 @@
         </div>
 
         <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="newCategory.color" value="{{ __('Category color') }}" />
-            <x-jet-input id="newCategory.color"
-            type="text"
-            class="block w-full mt-1"
-            wire:model.defer="newCategory.color"
-            autofocus
-            disabled/>
-            <x-jet-input-error for="newCategory.color" class="mt-2" />
-        </div>
-
-        <div class="col-span-6 sm:col-span-4">
             <x-checkbox left-label="Is Active?" id="newCategory.is_active" wire:model.defer="newCategory.is_active" md />
             <x-jet-input-error for="newCategory.is_active" class="mt-2" />
         </div>

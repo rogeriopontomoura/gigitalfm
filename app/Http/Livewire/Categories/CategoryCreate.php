@@ -34,7 +34,6 @@ class CategoryCreate extends Component
         return [
             'newCategory.title' => 'required',
             'newCategory.category_type_id' => 'required',
-            'newCategory.color' => 'required',
             'newCategory.is_active' => 'required',
             'newCategory.description' => 'required',
         ];

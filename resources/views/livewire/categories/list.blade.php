@@ -16,6 +16,7 @@
                         <th>Description</th>
                         <th>Category</th>
                         <th>Active</th>
+                        <th>{{ __('Actions') }}</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -26,6 +27,9 @@
                             <td>{{ $item->description }}</td>
                             <td>{{ $item->category_type_id }}</td>
                             <td>{{ $item->is_active }}</td>
+                            <td>
+                                @livewire('categories.category-item', ['category' => $item], key($item->id))
+                            </td>
                         </tr>
 
                       @endforeach

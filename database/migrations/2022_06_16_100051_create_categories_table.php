@@ -19,7 +19,6 @@ class CreateCategoriesTable extends Migration
             $table->text('description')->nullable();
             $table->integer('category_type_id');
             $table->boolean('is_active')->default(true);
-            $table->string('color')->nullable();
             $table->timestamps();
         });
     }
