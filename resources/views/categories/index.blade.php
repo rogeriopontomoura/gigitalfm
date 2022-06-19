@@ -5,6 +5,7 @@
         </h2>
         <div>
             <x-notifications/>
+            <x-dialog z-index="z-50" blur="md" align="center" />
         </div>
     </x-slot>
 

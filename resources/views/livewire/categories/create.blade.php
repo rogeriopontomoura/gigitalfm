@@ -1,4 +1,4 @@
-<x-jet-form-section submit="store">
+<x-jet-form-section submit="{{ ($is_editing) ? 'update' : 'store' }}">
     <x-slot name="title">
         {{ __('Create Category') }}
     </x-slot>
@@ -55,7 +55,7 @@
             {{__('Category Created.')}}
         </x-jet-action-message>
 
-        @if ($editing)
+        @if ($is_editing)
             <x-jet-button class="mr-3" >
                     {{ __('Save') }}
             </x-jet-button>

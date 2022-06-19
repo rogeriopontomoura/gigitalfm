@@ -28,14 +28,14 @@ class CategoryList extends Component
     {
         $this->newCategory = $category;
 
-        $this->notification()->confirm([
+        $this->dialog()->confirm([
             'title'       => 'Are you Sure?',
             'description' => "Do you hant do delete $category->title ?",
             'icon'        => 'question',
             'accept'      => [
                 'label'  => 'Yes, delete it',
                 'method' => 'destroy',
-                'params' => $category,
+                'params' => $this->newCategory->id,
             ],
             'reject' => [
                 'label'  => 'No, cancel',
@@ -44,11 +44,9 @@ class CategoryList extends Component
 
     }
 
-    public function destroy(Category $category)
+    public function destroy($categoryId)
     {
-        $this->newCategory = $category;
-
-        $this->newCategory->delete();
+        $this->newCategory->delete($categoryId);
 
         $this->notification()->success(
             $title = 'Category Deleted',

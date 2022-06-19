@@ -30,8 +30,8 @@
                                 {{ ($item->is_active === 1) ? __('Yes') : __('No') }}
                             <td>
                                 <div class="inline-flex rounded-md shadow-sm" role="group">
-                                    <x-button primary icon="pencil" wire:click="edit({{$item}})" wire:loading.attr="disabled"/>
-                                    <x-button negative icon="x" wire:click="delete({{ $item }})" wire:loading.attr="disabled"/>
+                                    <x-button primary icon="pencil" wire:click="edit({{$item}})" wire:key="$item->id" wire:loading.attr="disabled"/>
+                                        <x-button negative icon="x" wire:click="delete({{ $item }})" wire:key="$item->id" wire:loading.attr="disabled"/>
                                 </div>
                             </td>
                         </tr>

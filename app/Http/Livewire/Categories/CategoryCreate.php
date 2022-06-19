@@ -11,11 +11,11 @@ class CategoryCreate extends Component
 
     public $newCategory;
 
-    public $editing;
+    public $is_editing;
 
     use Actions;
 
-    protected $listeners = ['editItem' => 'editing'];
+    protected $listeners = ['editItem' => 'edit'];
 
     public function mount(Category $category)
     {
@@ -25,7 +25,12 @@ class CategoryCreate extends Component
 
     public function store()
     {
-        $this->validate();
+        $this->validate([
+            'newCategory.title' => 'required|unique:categories,title',
+            'newCategory.category_type_id' => 'required',
+            'newCategory.is_active' => 'required',
+            'newCategory.description' => 'required',
+        ]);
 
         $this->newCategory->save();
 
@@ -33,7 +38,7 @@ class CategoryCreate extends Component
 
         $this->emit('created');
         $this->emitTo('categories.category-list', 'refreshList');
-        $this->editing = false;
+        $this->is_editing = false;
 
         $this->notification()->success(
             $title = 'Category saved',
@@ -44,10 +49,10 @@ class CategoryCreate extends Component
     protected function rules()
     {
         return [
-            'newCategory.title' => 'required',
-            'newCategory.category_type_id' => 'required',
-            'newCategory.is_active' => 'required',
-            'newCategory.description' => 'required',
+            'newCategory.title' => '',
+            'newCategory.category_type_id' => '',
+            'newCategory.is_active' => '',
+            'newCategory.description' => '',
         ];
     }
 
@@ -59,12 +64,35 @@ class CategoryCreate extends Component
     }
 
 
-    public function editing(Category $Category)
+    public function edit(Category $Category)
     {
         $this->resetValidation();
-        $this->editing = true;
+        $this->is_editing = true;
         $this->newCategory = $Category;
 
+    }
+
+    public function update()
+    {
+        $this->validate([
+            'newCategory.title' => 'required|unique:categories,title,'. $this->newCategory->id,
+            'newCategory.category_type_id' => 'required',
+            'newCategory.is_active' => 'required',
+            'newCategory.description' => 'required',
+        ]);
+
+        $this->newCategory->save();
+
+        $this->newCategory = new Category();
+
+        $this->emit('updated');
+        $this->emitTo('categories.category-list', 'refreshList');
+        $this->is_editing = false;
+
+        $this->notification()->success(
+            $title = 'Category updated',
+            $description = 'Your Category was successfull updated'
+        );
     }
 
     public function editCancel()
@@ -72,7 +100,7 @@ class CategoryCreate extends Component
 
         $this->newCategory = new Category();
         $this->resetValidation();
-        $this->editing = false;
+        $this->is_editing = false;
 
     }
 }
