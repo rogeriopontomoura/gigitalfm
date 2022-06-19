@@ -28,4 +28,5 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
     Route::view('/categories', 'categories.index')->name('categories.index');
+    Route::view('/categorytypes', 'categorytypes.index')->name('categorytypes.index');
 });

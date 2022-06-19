@@ -1,0 +1,25 @@
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="text-xl font-semibold leading-tight text-gray-800">
+            {{ __('Create Categories') }}
+        </h2>
+        <div>
+            <x-notifications/>
+            <x-dialog z-index="z-50" blur="md" align="center" />
+        </div>
+    </x-slot>
+
+    <div>
+        <div class="py-10 mx-auto max-w-7xl sm:px-6 lg:px-8">
+
+            @livewire('categorytypes.category-type-create')
+
+        </div>
+
+        <div class="py-10 mx-auto max-w-7xl sm:px-6 lg:px-8">
+
+            @livewire('categorytypes.category-type-list')
+
+        </div>
+    </div>
+</x-app-layout>
