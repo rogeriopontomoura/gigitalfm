@@ -18,6 +18,9 @@ class CreateCategoriesTable extends Migration
             $table->string('title')->unique();
             $table->text('description')->nullable();
             $table->boolean('is_active')->default(true);
+            $table->text('ledger_account')->nullable();
+            $table->text('default_history')->nullable();
+            $table->text('automatic_launch')->nullable();
 
             $table->unsignedBigInteger('category_type_id');
             $table->foreign('category_type_id')
