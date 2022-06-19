@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Schema;
 
 class CreateCategoryTypesTable extends Migration
@@ -22,6 +23,15 @@ class CreateCategoryTypesTable extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
+
+
+        // Seeding after create
+
+        Artisan::call('db:seed', [
+            '--class' => 'CategoryTypesTableSeeder',
+            '--force' => true
+        ]);
+
     }
 
     /**
