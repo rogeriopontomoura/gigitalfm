@@ -17,9 +17,16 @@ class CreateCategoriesTable extends Migration
             $table->id();
             $table->string('title')->unique();
             $table->text('description')->nullable();
-            $table->integer('category_type_id');
             $table->boolean('is_active')->default(true);
+
+            $table->unsignedBigInteger('category_type_id');
+            $table->foreign('category_type_id')
+                ->references('id')
+                ->on('category_types')
+                ->onDelete('cascade');
+
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
