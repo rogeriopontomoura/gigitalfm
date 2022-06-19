@@ -28,16 +28,11 @@
             <x-jet-input-error for="newCategory.description" class="mt-2" />
         </div>
         <div class="col-span-6 sm:col-span-4">
-
-
             <x-select
                 label="Select Category Type"
                 placeholder="Select one Category"
-                :options="[
-                    ['name' => 'Income',  'id' => 1],
-                    ['name' => 'Expense',  'id' => 2],
-                    ]"
-                    option-label="name"
+                :options="$categoryTypes"
+                    option-label="title"
                     option-value="id"
                 wire:model.defer="newCategory.category_type_id"
             />

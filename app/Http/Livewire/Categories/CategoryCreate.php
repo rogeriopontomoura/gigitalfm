@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Categories;
 
 use App\Models\Category;
+use App\Models\CategoryType;
 use Livewire\Component;
 use WireUi\Traits\Actions;
 
@@ -10,6 +11,7 @@ class CategoryCreate extends Component
 {
 
     public $newCategory;
+    public $categoryTypes;
 
     public $is_editing;
 
@@ -17,9 +19,11 @@ class CategoryCreate extends Component
 
     protected $listeners = ['editItem' => 'edit'];
 
-    public function mount(Category $category)
+    public function mount(Category $category, CategoryType $categoryTypes)
     {
         $this->newCategory = $category;
+
+        $this->categoryTypes = CategoryType::all();
     }
 
 

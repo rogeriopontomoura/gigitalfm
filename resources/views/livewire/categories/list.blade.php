@@ -22,10 +22,11 @@
                     <tbody>
 
                     @foreach ($this->list as $item)
+
                         <tr>
                             <td>{{ $item->title }}</td>
                             <td>{{ $item->description }}</td>
-                            <td>{{ $item->category_type_id }}</td>
+                            <td>{{ $item->categoryType->title }}</td>
                             <td>
                                 {{ ($item->is_active === 1) ? __('Yes') : __('No') }}
                             <td>
