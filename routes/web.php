@@ -29,4 +29,5 @@ Route::middleware([
     })->name('dashboard');
     Route::view('/categories', 'categories.index')->name('categories.index');
     Route::view('/categorytypes', 'categorytypes.index')->name('categorytypes.index');
+    Route::view('/banks', 'banks.index')->name('banks.index');
 });
